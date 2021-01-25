@@ -1,0 +1,106 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createTenantForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewHotel' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="hotelName">
+        {{ "Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="hotelName"
+          id="hotelName"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="hotel.name"
+          #hotelNameModel="ngModel"
+          #hotelNameEl
+        />
+        <abp-validation-summary
+          [control]="hotelNameModel"
+          [controlEl]="hotelNameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="address">
+        {{ "Address" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="address"
+          id="address"
+          maxlength="128"
+          required
+          [(ngModel)]="hotel.address"
+          #addressModel="ngModel"
+          #addressEl
+        />
+        <abp-validation-summary
+          [control]="addressModel"
+          [controlEl]="addressEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="country">
+        {{ "country" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="country"
+          id="country"
+          maxlength="64"
+          [(ngModel)]="hotel.country"
+          #countryModel="ngModel"
+          #countryEl
+        />
+        <abp-validation-summary
+        [control]="countryModel"
+        [controlEl]="countryEl"
+      ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="city">
+        {{ "City" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="city"
+          id="city"
+          maxlength="64"
+          required
+          [(ngModel)]="hotel.city"
+          #cityModel="ngModel"
+          #cityEl
+        />
+        <abp-validation-summary
+          [control]="cityModel"
+          [controlEl]="cityEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createTenantForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
